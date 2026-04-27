@@ -1,0 +1,143 @@
+/* ╔══════════════════════════════════════════════════════════════╗
+   ║  01-TOKENS.CSS — VARIÁVEIS GLOBAIS (Design System)           ║
+   ║                                                                ║
+   ║  ⭐ EDITE AQUI para mudar cores, fontes e tamanhos do site    ║
+   ║     INTEIRO de uma vez. Tudo é centralizado neste arquivo.    ║
+   ║                                                                ║
+   ║  📌 Atalhos (Ctrl+F):                                         ║
+   ║     • Trocar cor rosa     → --pink:                           ║
+   ║     • Trocar tamanho h1   → --fs-h1:                          ║
+   ║     • Mudar largura site  → --max-w:                          ║
+   ║     • Mudar tema escuro   → [data-theme="dark"]               ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+
+:root {
+
+  /* ═══════════════════════════════════════════════════
+     🎨 CORES — paleta principal
+     ═══════════════════════════════════════════════════ */
+
+  /* Rosa (cor da marca) */
+  --pink:         #FF2D8B;
+  --pink-dark:    #BE185D;
+  --pink-light:   #FF6BB8;
+  --pink-glow:    rgba(255, 45, 139, 0.30);
+  --pink-glow-sm: rgba(255, 45, 139, 0.12);
+
+  /* Cores das plataformas (botões coloridos) */
+  --xv-red:       #E50914;   /* XVideos    */
+  --of-blue:      #1A9FD4;   /* OnlyFans   */
+  --tg-blue:      #0088CC;   /* Telegram   */
+  --priv-orange:  #F07206;   /* Privacy    */
+  --wa-green:     #25D366;   /* WhatsApp   */
+  --manyvids:     #00A6FF;   /* ManyVids   */
+  --sheer:        #6B5BFF;   /* Sheer      */
+
+  /* Status / utilitárias */
+  --gold:    #F0C040;
+  --green:   #00C853;
+  --danger:  #FF5252;
+
+
+  /* ═══════════════════════════════════════════════════
+     ✏️ TIPOGRAFIA
+     ═══════════════════════════════════════════════════ */
+
+  /* Famílias de fonte */
+  --display: 'Barlow Condensed', Impact, sans-serif;
+  --sans:    'Inter', system-ui, sans-serif;
+
+  /* Tamanhos PADRONIZADOS — usados em TODAS as páginas
+     clamp(min, fluido, max) = se ajusta sozinho ao tamanho da tela */
+  --fs-display: clamp(2.5rem, 7vw, 5rem);      /* h1 hero gigante     */
+  --fs-h1:      clamp(2rem,   6vw, 4rem);      /* títulos de section  */
+  --fs-h2:      clamp(1.5rem, 4vw, 2.5rem);    /* subtítulos          */
+  --fs-h3:      clamp(1.2rem, 3vw, 1.6rem);    /* títulos pequenos    */
+  --fs-body:    clamp(0.9rem, 2vw, 1rem);      /* texto comum         */
+  --fs-small:   clamp(0.75rem, 1.5vw, 0.85rem);/* texto pequeno       */
+  --fs-micro:   0.65rem;                       /* tags, labels, micro */
+
+  /* Pesos */
+  --fw-normal: 400;
+  --fw-medium: 500;
+  --fw-semi:   600;
+  --fw-bold:   700;
+  --fw-black:  900;
+
+
+  /* ═══════════════════════════════════════════════════
+     📐 LAYOUT — espaçamentos e larguras
+     ═══════════════════════════════════════════════════ */
+
+  --nav-h:      68px;                       /* altura da navbar      */
+  --foot-h:     64px;                       /* altura footer mobile  */
+  --max-w:      1400px;                     /* largura máxima site   */
+  --px:         clamp(1rem, 4vw, 2rem);     /* padding lateral fluido*/
+  --section-py: clamp(3rem, 8vw, 6rem);     /* padding vertical section */
+
+  /* Sections fullscreen — ocupam altura toda da tela */
+  --section-min-h: 100svh;
+
+  /* Bordas arredondadas */
+  --r-sm:    6px;
+  --r-md:   10px;
+  --r-lg:   16px;
+  --r-xl:   24px;
+  --r-pill: 50px;                           /* pílula (botões redondos) */
+
+
+  /* ═══════════════════════════════════════════════════
+     🎬 ANIMAÇÃO
+     ═══════════════════════════════════════════════════ */
+
+  --dur:  0.25s;
+  --eout: cubic-bezier(.2, 1, .3, 1);       /* saída suave           */
+  --ease: cubic-bezier(.65, 0, .35, 1);     /* curva natural         */
+
+
+  /* ═══════════════════════════════════════════════════
+     📱 BREAKPOINTS — só pra LEMBRAR os números
+        ⚠️ Não dá pra usar variável dentro de @media,
+        então use estes valores diretamente nos seus CSS:
+
+           SM:  ≥ 480px   → celular grande
+           MD:  ≥ 768px   → tablet / desktop começa aqui
+           LG:  ≥ 1024px  → desktop padrão
+           XL:  ≥ 1280px  → desktop grande
+     ═══════════════════════════════════════════════════ */
+}
+
+
+/* ════════════════════════════════════════════════════
+   🌙 TEMA ESCURO (padrão)
+   ════════════════════════════════════════════════════ */
+[data-theme="dark"] {
+  --bg:        #080808;     /* fundo geral                */
+  --bg-mid:    #111111;     /* navbar, footer             */
+  --bg-card:   #161616;     /* cards                      */
+  --bg-raised: #1E1E1E;     /* elementos elevados (dropdown) */
+
+  --border:    rgba(255, 255, 255, 0.07);
+  --border-hi: rgba(255, 255, 255, 0.13);
+
+  --txt:       #ECEAEA;     /* texto principal */
+  --txt-mid:   rgba(255, 255, 255, 0.72);
+  --txt-dim:   rgba(255, 255, 255, 0.40);
+}
+
+/* ════════════════════════════════════════════════════
+   ☀️ TEMA CLARO
+   ════════════════════════════════════════════════════ */
+[data-theme="light"] {
+  --bg:        #F4F4F4;
+  --bg-mid:    #FFFFFF;
+  --bg-card:   #F0F0F0;
+  --bg-raised: #FFFFFF;
+
+  --border:    rgba(0, 0, 0, 0.08);
+  --border-hi: rgba(0, 0, 0, 0.15);
+
+  --txt:       #111111;
+  --txt-mid:   rgba(0, 0, 0, 0.72);
+  --txt-dim:   rgba(0, 0, 0, 0.42);
+}
