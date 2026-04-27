@@ -1,0 +1,381 @@
+/* ╔══════════════════════════════════════════════════════════════╗
+   ║  components/NAVBAR.CSS — Barra de navegação do topo          ║
+   ║                                                                ║
+   ║  📌 ATALHOS (Ctrl+F):                                         ║
+   ║     • Mudar altura da nav     → --nav-h em tokens.css         ║
+   ║     • Cor de fundo            → var(--bg-mid)                 ║
+   ║     • Mudar cor dos hovers    → var(--pink)                   ║
+   ║     • Tamanho da logo (foto)  → .nav-logo-photo width/height  ║
+   ║                                                                ║
+   ║  📱 BREAKPOINTS:                                              ║
+   ║     • Hamburguer aparece     → < 768px                        ║
+   ║     • Links desktop aparecem → ≥ 768px                        ║
+   ║     • Botão MENU aparece     → ≥ 768px                        ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+
+
+/* ═══════════════════════════════════════════════════
+   📍 BARRA PRINCIPAL — fica fixa no topo
+   ═══════════════════════════════════════════════════ */
+.nav {
+  position: sticky;
+  top: 0;
+  height: var(--nav-h);
+  z-index: 1000;
+  background: var(--bg-mid);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: box-shadow var(--dur), background var(--dur);
+}
+
+/* Sombra aparece ao rolar (classe adicionada via JS) */
+.nav.scrolled {
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Container interno: logo | links | controles */
+.nav-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-inline: var(--px);
+  max-width: var(--max-w);
+  margin-inline: auto;
+}
+
+
+/* ═══════════════════════════════════════════════════
+   🎨 LOGO — foto circular + texto
+   ═══════════════════════════════════════════════════ */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;          /* nunca encolhe */
+}
+
+/* Foto circular com anel pulsante */
+.nav-logo-photo {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+}
+.nav-logo-photo img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--pink);
+}
+
+/* Anel rosa que pulsa em volta da foto */
+.nav-logo-photo::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid var(--pink-glow);
+  animation: ringPulse 2.5s ease-in-out infinite;
+}
+@keyframes ringPulse {
+  0%, 100% { opacity: 0.4; transform: scale(1);    }
+  50%       { opacity: 1;   transform: scale(1.06); }
+}
+
+/* Selo de verificado azul (canto inferior direito da foto) */
+.verified-badge {
+  position: absolute;
+  bottom: -1px;
+  right: -2px;
+  width: 14px;
+  height: 14px;
+  background: #1DA1F2;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--bg-mid);
+}
+.verified-badge i {
+  color: #fff;
+  font-size: 0.45rem;
+}
+
+/* Textos ao lado da foto */
+.nav-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+.nav-logo-name {
+  font-family: var(--display);
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  font-weight: var(--fw-black);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--txt);
+}
+.nav-logo-sub {
+  font-size: 0.52rem;
+  font-weight: var(--fw-normal);
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  color: var(--txt-dim);
+}
+
+
+/* ═══════════════════════════════════════════════════
+   🔗 LINKS DESKTOP — escondidos no mobile, aparecem ≥ 768px
+   ═══════════════════════════════════════════════════ */
+.nav-links {
+  display: none;            /* mobile-first: escondido */
+  align-items: center;
+  gap: 1.5rem;
+}
+.nav-links a {
+  font-size: 0.82rem;
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.04em;
+  color: var(--txt-mid);
+  position: relative;
+  transition: color var(--dur);
+}
+
+/* Linha rosa animada embaixo do link no hover */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--pink);
+  transition: width var(--dur) var(--eout);
+}
+.nav-links a:hover,
+.nav-links a.active-link {
+  color: var(--pink);
+}
+.nav-links a:hover::after,
+.nav-links a.active-link::after {
+  width: 100%;
+}
+
+
+/* ═══════════════════════════════════════════════════
+   🎛️ CONTROLES (tema + idioma + menu)
+   ═══════════════════════════════════════════════════ */
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Botão circular de ícone (tema) */
+.icon-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+  color: var(--txt-mid);
+  font-size: 0.85rem;
+  transition: all var(--dur);
+  flex-shrink: 0;
+}
+.icon-btn:hover {
+  border-color: var(--pink);
+  color: var(--pink);
+}
+
+
+/* ═══════════════════════════════════════════════════
+   🌍 SELETOR DE IDIOMA (dropdown)
+   ═══════════════════════════════════════════════════ */
+.lang-sel {
+  position: relative;
+}
+
+.lang-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 9px;
+  height: 36px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  color: var(--txt-mid);
+  font-size: 0.78rem;
+  font-weight: var(--fw-semi);
+  transition: all var(--dur);
+}
+.lang-trigger:hover {
+  border-color: var(--pink);
+  color: var(--pink);
+}
+
+.lang-flag {
+  font-size: 1rem;
+  line-height: 1;
+}
+.lang-code {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Setinha do dropdown */
+.lang-arrow svg {
+  width: 11px;
+  height: 11px;
+  stroke: currentColor;
+  transition: transform var(--dur);
+}
+/* Quando aberto, vira a setinha */
+.lang-sel.open .lang-arrow svg {
+  transform: rotate(180deg);
+}
+
+/* Caixa do dropdown */
+.lang-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 170px;
+  background: var(--bg-raised);
+  border: 1px solid var(--border-hi);
+  border-radius: var(--r-md);
+  padding: 6px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+
+  /* Animação de entrada */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity var(--dur), visibility var(--dur),
+              transform var(--dur) var(--eout);
+  z-index: 200;
+}
+.lang-sel.open .lang-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.lang-dropdown p {
+  font-size: 0.68rem;
+  color: var(--txt-dim);
+  padding: 4px 10px 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 4px;
+}
+
+/* Cada opção do dropdown */
+.lang-opt {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: var(--r-sm);
+  font-size: 0.82rem;
+  font-weight: var(--fw-medium);
+  color: var(--txt-mid);
+  transition: background var(--dur), color var(--dur);
+}
+.lang-opt:hover {
+  background: var(--pink-glow-sm);
+  color: var(--pink);
+}
+/* Idioma atual marcado em rosa */
+.lang-opt[aria-selected="true"] {
+  color: var(--pink);
+  background: var(--pink-glow-sm);
+  font-weight: var(--fw-bold);
+}
+
+
+/* ═══════════════════════════════════════════════════
+   🍔 BOTÃO MENU DESKTOP (rosa) — só aparece ≥ 768px
+   ═══════════════════════════════════════════════════ */
+.btn-menu-desktop {
+  display: none;            /* mobile-first: escondido */
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  height: 36px;
+  background: var(--pink);
+  border-radius: 4px;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: background var(--dur), transform var(--dur);
+}
+.btn-menu-desktop:hover {
+  background: var(--pink-dark);
+  transform: translateY(-1px);
+}
+
+
+/* ═══════════════════════════════════════════════════
+   🍔 HAMBURGUER (mobile) — só aparece < 768px
+   ═══════════════════════════════════════════════════ */
+.hamburger {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+  padding: 0 8px;
+  transition: border-color var(--dur);
+}
+.hamburger:hover {
+  border-color: var(--pink);
+}
+
+/* As 3 linhas do hamburguer */
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--txt-mid);
+  border-radius: 2px;
+  transition: transform var(--dur), opacity var(--dur), background var(--dur);
+}
+
+/* Quando ativo (menu aberto) → vira um X rosa */
+.hamburger.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+  background: var(--pink);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+  background: var(--pink);
+}
+
+
+/* ════════════════════════════════════════════════════
+   📱 BREAKPOINTS — Responsivo
+   ════════════════════════════════════════════════════ */
+
+/* MD: ≥ 768px → desktop começa aqui */
+@media (min-width: 768px) {
+  .nav-links        { display: flex; }   /* mostra os links     */
+  .btn-menu-desktop { display: inline-flex; } /* mostra MENU    */
+  .hamburger        { display: none; }   /* esconde hamburguer  */
+}
