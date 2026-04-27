@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!--
+  ╔══════════════════════════════════════════════════════════════╗
+  ║  TESTE.HTML — Página de demonstração da BASE                 ║
+  ║                                                                ║
+  ║  Abra este arquivo no navegador pra ver:                      ║
+  ║    ✓ Variáveis funcionando (cores, fontes)                    ║
+  ║    ✓ Tipografia padronizada (h1, h2, h3, p)                   ║
+  ║    ✓ .container limitando largura                             ║
+  ║    ✓ .section-fullscreen ocupando tela toda                   ║
+  ║    ✓ .section-header com tag + título + sub                   ║
+  ║    ✓ Tema dark/light alternando                               ║
+  ╚══════════════════════════════════════════════════════════════╝
+-->
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teste — Base CSS</title>
+
+  <!-- Fontes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- ⭐ Único CSS que precisa importar -->
+  <link rel="stylesheet" href="./css/main.css">
+
+  <!-- Botão de tema só pra testar -->
+  <style>
+    .theme-toggle {
+      position: fixed; top: 1rem; right: 1rem; z-index: 100;
+      padding: 8px 16px; background: var(--pink); color: #fff;
+      border-radius: var(--r-md); font-weight: var(--fw-bold);
+      font-size: var(--fs-small);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Botão pra alternar tema (teste) -->
+  <button class="theme-toggle" onclick="
+    const h = document.documentElement;
+    h.dataset.theme = h.dataset.theme === 'dark' ? 'light' : 'dark';
+  ">🌓 Trocar tema</button>
+
+
+  <!-- 1. AGE BANNER (componente do utilities.css) -->
+  <div class="age-banner">
+    <span class="age-pill">18+</span>
+    Conteúdo adulto exclusivo para maiores de 18 anos
+  </div>
+
+
+  <!-- 2. SECTION FULLSCREEN — ocupa a tela toda -->
+  <section class="section-fullscreen">
+    <div class="container">
+
+      <!-- Section header padrão -->
+      <div class="section-header">
+        <span class="section-tag">⭐ Teste do sistema</span>
+        <h1>
+          BASE <span class="accent">FUNCIONANDO</span>
+        </h1>
+        <p class="section-sub">Se você está vendo isso, deu tudo certo</p>
+      </div>
+
+      <!-- Demo dos tamanhos de título -->
+      <div style="text-align:center; max-width:600px; margin:2rem auto;">
+        <h1>H1 — Título Hero</h1>
+        <h2>H2 — Título de Section</h2>
+        <h3>H3 — Subtítulo</h3>
+        <h4>H4 — Título pequeno</h4>
+        <p>Parágrafo padrão. Esse texto usa <code>--fs-body</code> e fica num tamanho confortável de leitura em qualquer dispositivo. Se você redimensionar a janela, vai ver os títulos acima se ajustando sozinhos.</p>
+        <p class="t-small">Texto pequeno (.t-small)</p>
+        <p class="t-micro">TAG MICRO (.t-micro)</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- 3. SECTION COMUM com fundo alternado -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">🎨 Tema</span>
+        <h2 class="section-title">
+          CLIQUE NO <span class="accent-gradient">BOTÃO ROSA</span>
+        </h2>
+        <p class="section-sub">Pra alternar entre escuro e claro</p>
+      </div>
+
+      <p style="text-align:center; max-width:500px; margin:0 auto;">
+        Note como TUDO muda de cor sem você precisar tocar em nenhum CSS.
+        Isso acontece porque as cores são variáveis no <code>tokens.css</code>.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- 4. SECTION FULLSCREEN final -->
+  <section class="section-fullscreen">
+    <div class="container text-center">
+      <h2>PRÓXIMO <span class="accent">PASSO</span></h2>
+      <p style="max-width:500px; margin:1.5rem auto;">
+        Agora vamos criar os componentes:<br>
+        navbar, menu mobile, botões, cards e footer.
+      </p>
+    </div>
+  </section>
+
+</body>
+</html>
