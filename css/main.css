@@ -1,0 +1,60 @@
+/* ╔══════════════════════════════════════════════════════════════╗
+   ║  MAIN.CSS — ARQUIVO PRINCIPAL                                  ║
+   ║                                                                ║
+   ║  ⭐ Este é o ÚNICO CSS que cada página precisa importar.       ║
+   ║     Ele puxa todos os outros arquivos na ordem correta.       ║
+   ║                                                                ║
+   ║  📌 No HTML de qualquer página, basta colocar:                ║
+   ║                                                                ║
+   ║     <link rel="stylesheet" href="./css/main.css">             ║
+   ║                                                                ║
+   ║  🚧 Ordem dos imports IMPORTA:                                ║
+   ║     1º base (variáveis precisam vir antes do resto)           ║
+   ║     2º componentes (peças de UI)                              ║
+   ║     3º páginas (estilo específico de cada página)             ║
+   ║                                                                ║
+   ║  📝 Conforme a gente cria mais arquivos, basta DESCOMENTAR    ║
+   ║     a linha correspondente abaixo.                            ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+
+
+/* ════════════════════════════════════════════════════
+   🏗️  1. BASE — sempre primeiro!
+   ════════════════════════════════════════════════════
+   Variáveis e reset precisam vir ANTES de qualquer
+   estilo de componente, senão nada funciona direito. */
+
+@import url('./01-tokens.css');
+@import url('./02-reset.css');
+@import url('./03-typography.css');
+@import url('./04-utilities.css');
+
+
+/* ════════════════════════════════════════════════════
+   🧩  2. COMPONENTES — peças reutilizáveis
+   ════════════════════════════════════════════════════
+   Vamos criar esses arquivos nos próximos passos.
+   Por enquanto ficam comentados. */
+
+/* @import url('./components/navbar.css');      */
+/* @import url('./components/mobile-menu.css'); */
+/* @import url('./components/buttons.css');     */
+/* @import url('./components/cards.css');       */
+/* @import url('./components/footer.css');      */
+/* @import url('./components/popup.css');       */
+/* @import url('./components/ticker.css');      */
+
+
+/* ════════════════════════════════════════════════════
+   📄  3. PÁGINAS — estilo específico de cada uma
+   ════════════════════════════════════════════════════
+   Cada página importa SÓ o seu arquivo, não todos.
+   Vamos cuidar disso quando chegarmos nas páginas.
+
+   ⚠️ A página videos.html NÃO usa main.css — ela tem
+   design próprio inline (não mexer). */
+
+/* @import url('./pages/home.css');     */
+/* @import url('./pages/galleria.css'); */
+/* @import url('./pages/contact.css');  */
+/* @import url('./pages/links.css');    */
