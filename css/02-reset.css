@@ -1,0 +1,126 @@
+/* ╔══════════════════════════════════════════════════════════════╗
+   ║  02-RESET.CSS — Reset universal e estilos base do <body>     ║
+   ║                                                                ║
+   ║  Esse arquivo zera margens/paddings padrão dos browsers e     ║
+   ║  define a base visual do site (fonte, fundo, scroll, grain). ║
+   ║                                                                ║
+   ║  ⚠️ Você raramente vai precisar mexer aqui.                   ║
+   ║     Se quiser mudar fundo ou cor base, edite tokens.css       ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+
+
+/* ═══════════════════════════════════════════════════
+   🔄 RESET UNIVERSAL
+   box-sizing: padding e border ENTRAM no tamanho total
+   (ou seja: width: 100% sempre cabe, sem estourar)
+   ═══════════════════════════════════════════════════ */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;            /* scroll suave em links âncora (#) */
+  -webkit-text-size-adjust: 100%;     /* impede iOS de aumentar texto sozinho */
+}
+
+body {
+  font-family: var(--sans);
+  font-size: var(--fs-body);
+  background: var(--bg);
+  color: var(--txt);
+  line-height: 1.6;
+  overflow-x: hidden;                 /* nunca aparece scroll horizontal */
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background var(--dur), color var(--dur);
+}
+
+
+/* ═══════════════════════════════════════════════════
+   🧹 LIMPEZA DOS ELEMENTOS PADRÃO
+   ═══════════════════════════════════════════════════ */
+
+/* Listas sem marcadores */
+ul, ol { list-style: none; }
+
+/* Links herdam cor do contexto (não vêm azul/roxo padrão) */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Mídia responsiva por padrão */
+img, video, svg {
+  max-width: 100%;
+  display: block;
+}
+
+/* Botões sem estilo padrão de browser */
+button {
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  background: none;
+  color: inherit;
+}
+
+/* Inputs/textarea/select herdam fonte do site */
+input, textarea, select {
+  font-family: inherit;
+}
+
+
+/* ═══════════════════════════════════════════════════
+   ♿ ACESSIBILIDADE
+   ═══════════════════════════════════════════════════ */
+
+/* Foco visível em qualquer elemento focado por TECLADO
+   (não aparece em clique de mouse — só pra quem usa Tab) */
+:focus-visible {
+  outline: 2px solid var(--pink);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Respeita usuários que pediram menos animação no SO */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════
+   🎨 SCROLLBAR PERSONALIZADA (Chrome/Edge/Safari)
+   ═══════════════════════════════════════════════════ */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--pink-dark);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--pink);
+}
+
+
+/* ═══════════════════════════════════════════════════
+   ✨ EFEITO GRAIN — textura sutil de fundo
+   Decorativo, não atrapalha cliques (pointer-events:none)
+   ═══════════════════════════════════════════════════ */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9990;
+}
