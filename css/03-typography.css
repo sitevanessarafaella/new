@@ -1,0 +1,121 @@
+/* ╔══════════════════════════════════════════════════════════════╗
+   ║  03-TYPOGRAPHY.CSS — Sistema de tipografia                    ║
+   ║                                                                ║
+   ║  Define os tamanhos de TODOS os títulos do site.              ║
+   ║  ⭐ Garante que h1, h2, h3 fiquem iguais em todas as páginas. ║
+   ║                                                                ║
+   ║  📌 Como usar:                                                ║
+   ║     • <h1>Título</h1>           ← maior, hero                 ║
+   ║     • <h2>Section</h2>          ← títulos de seção            ║
+   ║     • <p class="t-small">       ← texto pequeno               ║
+   ║     • <span class="accent">     ← rosa (destaque)             ║
+   ║                                                                ║
+   ║  ⚠️ Para mudar TAMANHOS, edite --fs-* em tokens.css           ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+
+
+/* ═══════════════════════════════════════════════════
+   📏 TÍTULOS PADRÃO — uniformes no site inteiro
+   ═══════════════════════════════════════════════════ */
+
+/* H1 / .t-display — TÍTULO HERO (o maior de todos) */
+h1, .t-display {
+  font-family: var(--display);
+  font-size: var(--fs-display);
+  font-weight: var(--fw-black);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+/* H2 / .t-h1 — TÍTULOS DE SECTION (Sobre Mim, Vídeos, etc.) */
+h2, .t-h1 {
+  font-family: var(--display);
+  font-size: var(--fs-h1);
+  font-weight: var(--fw-black);
+  line-height: 1;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+}
+
+/* H3 / .t-h2 — Subtítulos */
+h3, .t-h2 {
+  font-family: var(--display);
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-bold);
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+/* H4 / .t-h3 — Títulos pequenos (cards, etc.) */
+h4, .t-h3 {
+  font-family: var(--display);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-semi);
+  line-height: 1.2;
+}
+
+/* Parágrafo padrão */
+p {
+  font-size: var(--fs-body);
+  line-height: 1.65;
+  color: var(--txt-mid);
+}
+
+/* Texto pequeno */
+small, .t-small {
+  font-size: var(--fs-small);
+}
+
+/* Texto MICRO — usado em tags, labels, eyebrows */
+.t-micro {
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+
+/* ═══════════════════════════════════════════════════
+   🎨 .accent — destaque rosa em palavras dentro de títulos
+
+   Uso:
+     <h1>VANESSA <span class="accent">RAFAELLA</span></h1>
+                       ↑ essa palavra fica rosa
+   ═══════════════════════════════════════════════════ */
+.accent {
+  color: var(--pink);
+}
+
+/* Versão GRADIENTE — visual mais rico (rosa → rosa claro) */
+.accent-gradient {
+  background: linear-gradient(135deg, var(--pink) 0%, var(--pink-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+
+/* ═══════════════════════════════════════════════════
+   📐 ALINHAMENTO — classes auxiliares
+   ═══════════════════════════════════════════════════ */
+.text-center { text-align: center; }
+.text-left   { text-align: left;   }
+.text-right  { text-align: right;  }
+
+
+/* ═══════════════════════════════════════════════════
+   ✂️ TRUNCAR TEXTO — limita linhas e adiciona "..."
+   Uso: <p class="truncate-2">Texto longo...</p>
+   ═══════════════════════════════════════════════════ */
+.truncate-1,
+.truncate-2,
+.truncate-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.truncate-1 { -webkit-line-clamp: 1; }
+.truncate-2 { -webkit-line-clamp: 2; }
+.truncate-3 { -webkit-line-clamp: 3; }
