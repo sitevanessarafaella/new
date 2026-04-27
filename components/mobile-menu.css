@@ -1,0 +1,189 @@
+/* ╔══════════════════════════════════════════════════════════════╗
+   ║  components/MOBILE-MENU.CSS — Painel lateral mobile          ║
+   ║                                                                ║
+   ║  Painel que desliza da direita ao tocar no hamburguer.       ║
+   ║  Contém: links de navegação + redes sociais + botão de tema. ║
+   ║                                                                ║
+   ║  📌 ATALHOS:                                                  ║
+   ║     • Largura do painel       → .mob-menu width               ║
+   ║     • Velocidade da animação  → .mob-menu transition          ║
+   ║     • Cor do overlay escuro   → .mob-overlay background       ║
+   ╚══════════════════════════════════════════════════════════════╝ */
+
+
+/* ═══════════════════════════════════════════════════
+   ⬛ OVERLAY — fundo escuro atrás do painel
+   ═══════════════════════════════════════════════════ */
+.mob-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  z-index: 1400;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--dur), visibility var(--dur);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.mob-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+/* ═══════════════════════════════════════════════════
+   📱 PAINEL LATERAL — entra pela direita
+   ═══════════════════════════════════════════════════ */
+.mob-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;                          /* fora da tela */
+  width: min(85vw, 320px);               /* 85% da tela ou 320px (o menor) */
+  height: 100vh;
+  height: 100dvh;                        /* dvh = altura segura no iOS */
+  background: var(--bg-mid);
+  border-left: 1px solid var(--border-hi);
+  z-index: 1500;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  transition: right 0.4s var(--eout);
+}
+.mob-menu.active {
+  right: 0;                              /* entra na tela */
+}
+
+
+/* ═══════════════════════════════════════════════════
+   📋 CABEÇALHO DO PAINEL
+   ═══════════════════════════════════════════════════ */
+.mob-menu-hdr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.mob-menu-brand {
+  font-family: var(--display);
+  font-size: 1.1rem;
+  font-weight: var(--fw-black);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--txt);
+}
+
+/* Botão de fechar (X) */
+.mob-close {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+  color: var(--txt-mid);
+  font-size: 1rem;
+  transition: all var(--dur);
+}
+.mob-close:hover {
+  border-color: var(--pink);
+  color: var(--pink);
+}
+
+
+/* ═══════════════════════════════════════════════════
+   🔗 LINKS DO MENU MOBILE
+   ═══════════════════════════════════════════════════ */
+.mob-nav {
+  padding: 1rem 0;
+  flex: 1;                          /* ocupa espaço sobrando */
+}
+
+.mob-nav li {
+  border-bottom: 1px solid var(--border);
+}
+
+.mob-nav a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 1rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: var(--fw-medium);
+  color: var(--txt-mid);
+  transition: color var(--dur),
+              padding-left var(--dur),
+              background var(--dur);
+}
+
+/* Ícone de cada link */
+.mob-nav a i {
+  width: 18px;
+  color: var(--pink);
+  font-size: 0.9rem;
+}
+
+/* Hover: empurra um pouco pra direita e fica rosa */
+.mob-nav a:hover {
+  color: var(--pink);
+  padding-left: 1.75rem;
+  background: var(--pink-glow-sm);
+}
+
+
+/* ═══════════════════════════════════════════════════
+   ⬇️ RODAPÉ DO PAINEL — redes sociais + tema
+   ═══════════════════════════════════════════════════ */
+.mob-menu-footer {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
+/* Botão de alternar tema */
+.mob-theme-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: var(--bg-card);
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+  color: var(--txt-mid);
+  font-size: 0.88rem;
+  width: 100%;
+  transition: all var(--dur);
+}
+.mob-theme-btn:hover {
+  border-color: var(--pink);
+  color: var(--pink);
+}
+
+/* Linha de redes sociais */
+.mob-socials {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.mob-soc-btn {
+  flex: 1;
+  min-width: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+  font-size: 0.95rem;
+  color: var(--txt-dim);
+  transition: all var(--dur);
+}
+.mob-soc-btn:hover {
+  color: var(--pink);
+  border-color: var(--pink);
+}
